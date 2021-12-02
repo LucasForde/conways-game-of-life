@@ -2,7 +2,10 @@
   "name": "conways-game-of-life-in-react",
   "version": "1.0.0",
   "description": "Conway's Game of Life in React",
-  "main": "index.js",
+  "engines": {
+    "npm": "8.1.0",
+    "node": "16.13.0"
+  },
   "scripts": {
     "dev": "webpack-dev-server --mode development --open --hot",
     "start": "node server.js",
