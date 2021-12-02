@@ -1,2 +1,1 @@
-# react-boilerplate
-React Application Boilerplate
+# Conway's Game of Life in React

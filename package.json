@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "conways-game-of-life-in-react",
   "version": "1.0.0",
-  "description": "React Application Boilerplate",
+  "description": "Conway's Game of Life in React",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open --hot",
