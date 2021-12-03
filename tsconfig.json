@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./built",
+    "noResolve": false,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": false,
+    "allowJs": true,
+    "checkJs": true,
+    "jsx": "react",
+    "baseUrl": "./src"
+  },
+  "exclude": [
+    "./node_modules/**/*"
+  ]
+}
