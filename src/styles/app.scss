@@ -1,13 +1,139 @@
+// Variables
+
+$background: #991111;
+$grid: rgba(0, 0, 0, 0.1);
+$highlight: #fff5cc;
+$menu: $highlight;
+$breakpoint: 860px;
+
+// Mixins
+
+@mixin font() {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+// Styles
+
 body {
-  font-family: sans-serif;
-  color: #fc0;
-  background-color: #363630;
+  @include font();
+  margin: 0;
+  background-color: $background;
+  overflow: hidden;
+}
+
+* {
+  outline: none;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.hide {
+  display: none;
+}
+
+main {
+  header {
+    min-height: 50px;
+    padding-top: 10px;
+    background-color: $grid;
+    overflow: hidden;
+
+    .header-left {
+      float: left;
+      padding-left: 6px;
+    }
+
+    .header-right {
+      float: right;
+      padding-right: 6px;
+    }
+
+    nav {
+      display: inline;
+
+      button {
+        @include font();
+        color: $menu;
+        padding: 6px;
+        border: none;
+        margin: 0 4px;
+        background-color: transparent;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+    }
+
+    .fa-button {
+      width: 26px;
+      font-size: 30px;
+      color: $menu;
+      margin: 0 6px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  }
+
+  .grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: block;
+      float: left;
+      list-style: none;
+      width: 1%;
+      height: 0;
+      padding-bottom: 1%;
+      border-right: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+
+      &.live {
+        background-color: $highlight;
+        border-radius: 2px;
+        border-right: 1px solid $grid;
+        border-bottom: 1px solid $grid;
+        box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.4);
+      }
+
+      // &.ghost {
+      //     background-color: rgba(0,0,0,0.1);
+      // }
+    }
+  }
+}
+
+@media (max-width: $breakpoint) {
+  body {
+    overflow: unset;
+  }
 
   main {
-    text-align: center;
+    header {
+      position: relative;
+      min-height: 85px;
 
-    h1 {
-      font-size: 50px;
+      .header-left {
+        width: calc(100% - 80px);
+        max-width: 300px;
+
+        .fa-button {
+          position: absolute;
+          bottom: 10px;
+          right: 6px;
+        }
+      }
+
+      nav {
+        display: block;
+        margin-bottom: 10px;
+
+        button {
+          margin-left: 0;
+        }
+      }
     }
   }
 }

@@ -1,13 +1,11 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import TempComponent from './components/TempComponent'
 import './styles/app.scss'
 
 const App = () => {
   return (
-    <main>
-      <h1>Hello World!</h1>
-      <p>This is a React boilerplate</p>
-    </main>
+    <TempComponent />
   )
 }
 
