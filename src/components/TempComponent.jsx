@@ -43,7 +43,7 @@ class TempComponent extends React.Component {
       document.getElementById(thisId).classList.add('live')
       document.getElementById(thisId).classList.remove('ghost')
 
-      let neighbours = this.getNeighbours(thisId)
+      const neighbours = this.getNeighbours(thisId)
 
       for (let i = 0; i < neighbours.length; i++) {
         if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
@@ -130,7 +130,7 @@ class TempComponent extends React.Component {
   }
 
   play () {
-    let { speed } = this.state
+    const { speed } = this.state
 
     document.getElementById('play').classList.add('hide')
     document.getElementById('stop').classList.remove('hide')
@@ -146,10 +146,10 @@ class TempComponent extends React.Component {
   }
 
   getNeighbours (thisId) {
-    let thisIdSplit = thisId.split('-')
-    let thisIdSplitIntFirst = parseInt(thisIdSplit[0], 10)
-    let thisIdSplitIntSecond = parseInt(thisIdSplit[1], 10)
-    let neighbours = []
+    const thisIdSplit = thisId.split('-')
+    const thisIdSplitIntFirst = parseInt(thisIdSplit[0], 10)
+    const thisIdSplitIntSecond = parseInt(thisIdSplit[1], 10)
+    const neighbours = []
 
     neighbours.push((thisIdSplitIntFirst - 1) + '-' + thisIdSplit[1])
     neighbours.push((thisIdSplitIntFirst - 1) + '-' + (thisIdSplitIntSecond + 1))
@@ -164,14 +164,12 @@ class TempComponent extends React.Component {
   }
 
   getNeighboursOfCollection (thisCollection, classIdentifier) {
-    let neighboursOfCollection = []
+    const neighboursOfCollection = []
 
     for (let i = 0; i < thisCollection.length; i++) {
-      let neighbours
+      const neighbours = this.getNeighbours(thisCollection[i].id)
 
-      neighbours = this.getNeighbours(thisCollection[i].id)
-
-      let neighboursCount = []
+      const neighboursCount = []
 
       for (let i = 0; i < neighbours.length; i++) {
         if (document.getElementById(neighbours[i]) != null && document.getElementById(neighbours[i]).classList.contains(classIdentifier)) {
@@ -186,14 +184,14 @@ class TempComponent extends React.Component {
   }
 
   iteration () {
-    let liveSquareNeighbours = this.getNeighboursOfCollection(this.liveSquareCollection, 'live')
-    let ghostSquareNeighbours = this.getNeighboursOfCollection(this.ghostSquareCollection, 'live')
-    let liveSquareCleanup = []
+    const liveSquareNeighbours = this.getNeighboursOfCollection(this.liveSquareCollection, 'live')
+    const ghostSquareNeighbours = this.getNeighboursOfCollection(this.ghostSquareCollection, 'live')
+    const liveSquareCleanup = []
 
     for (let i = 0; i < liveSquareNeighbours.length; i++) {
-      let thisSquareInfo = liveSquareNeighbours[i].split(',')
-      let liveSquareId = thisSquareInfo[0]
-      let neighbourCountInt = parseInt(thisSquareInfo[1], 10)
+      const thisSquareInfo = liveSquareNeighbours[i].split(',')
+      const liveSquareId = thisSquareInfo[0]
+      const neighbourCountInt = parseInt(thisSquareInfo[1], 10)
 
       liveSquareCleanup.push(liveSquareId)
 
@@ -204,9 +202,9 @@ class TempComponent extends React.Component {
     }
 
     for (let i = 0; i < ghostSquareNeighbours.length; i++) {
-      let thisSquareInfo = ghostSquareNeighbours[i].split(',')
-      let ghostSquareId = thisSquareInfo[0]
-      let neighbourCountInt = parseInt(thisSquareInfo[1], 10)
+      const thisSquareInfo = ghostSquareNeighbours[i].split(',')
+      const ghostSquareId = thisSquareInfo[0]
+      const neighbourCountInt = parseInt(thisSquareInfo[1], 10)
 
       if (neighbourCountInt === 3) {
         document.getElementById(ghostSquareId).classList.remove('ghost')
@@ -214,7 +212,7 @@ class TempComponent extends React.Component {
 
         liveSquareCleanup.push(ghostSquareId)
 
-        let neighbours = this.getNeighbours(ghostSquareId)
+        const neighbours = this.getNeighbours(ghostSquareId)
 
         for (let i = 0; i < neighbours.length; i++) {
           if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
@@ -226,18 +224,18 @@ class TempComponent extends React.Component {
       }
     }
 
-    let liveSquareCleanupCollection = []
+    const liveSquareCleanupCollection = []
 
     for (let i = 0; i < liveSquareCleanup.length; i++) {
       liveSquareCleanupCollection.push(document.getElementById(liveSquareCleanup[i]))
     }
 
-    let liveSquareCleanupNeighbours = this.getNeighboursOfCollection(liveSquareCleanupCollection, 'live')
+    const liveSquareCleanupNeighbours = this.getNeighboursOfCollection(liveSquareCleanupCollection, 'live')
 
     for (let i = 0; i < liveSquareCleanupNeighbours.length; i++) {
-      let thisSquareInfo = liveSquareCleanupNeighbours[i].split(',')
-      let liveSquareCleanupId = thisSquareInfo[0]
-      let neighbours = this.getNeighbours(liveSquareCleanupId)
+      const thisSquareInfo = liveSquareCleanupNeighbours[i].split(',')
+      const liveSquareCleanupId = thisSquareInfo[0]
+      const neighbours = this.getNeighbours(liveSquareCleanupId)
 
       for (let i = 0; i < neighbours.length; i++) {
         if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
