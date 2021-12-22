@@ -57,48 +57,48 @@ class TempComponent extends React.Component {
   glidersSpaceships () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.glidersSpaceshipsSquares[0].length; i++) {
-      document.getElementById(presetStates.glidersSpaceshipsSquares[0][i]).classList.add('live')
+    for (let i = 0; i < presetStates.glidersSpaceships[0].length; i++) {
+      document.getElementById(presetStates.glidersSpaceships[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.glidersSpaceshipsSquares[1].length; i++) {
-      document.getElementById(presetStates.glidersSpaceshipsSquares[1][i]).classList.add('ghost')
+    for (let i = 0; i < presetStates.glidersSpaceships[1].length; i++) {
+      document.getElementById(presetStates.glidersSpaceships[1][i]).classList.add('ghost')
     }
   }
 
   gliderGun () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.gliderGunSquares[0].length; i++) {
-      document.getElementById(presetStates.gliderGunSquares[0][i]).classList.add('live')
+    for (let i = 0; i < presetStates.gliderGun[0].length; i++) {
+      document.getElementById(presetStates.gliderGun[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.gliderGunSquares[1].length; i++) {
-      document.getElementById(presetStates.gliderGunSquares[1][i]).classList.add('ghost')
+    for (let i = 0; i < presetStates.gliderGun[1].length; i++) {
+      document.getElementById(presetStates.gliderGun[1][i]).classList.add('ghost')
     }
   }
 
   oscillator () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.oscillatorSquares[0].length; i++) {
-      document.getElementById(presetStates.oscillatorSquares[0][i]).classList.add('live')
+    for (let i = 0; i < presetStates.oscillator[0].length; i++) {
+      document.getElementById(presetStates.oscillator[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.oscillatorSquares[1].length; i++) {
-      document.getElementById(presetStates.oscillatorSquares[1][i]).classList.add('ghost')
+    for (let i = 0; i < presetStates.oscillator[1].length; i++) {
+      document.getElementById(presetStates.oscillator[1][i]).classList.add('ghost')
     }
   }
 
   rPentomino () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.rPentominoSquares[0].length; i++) {
-      document.getElementById(presetStates.rPentominoSquares[0][i]).classList.add('live')
+    for (let i = 0; i < presetStates.rPentomino[0].length; i++) {
+      document.getElementById(presetStates.rPentomino[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.rPentominoSquares[1].length; i++) {
-      document.getElementById(presetStates.rPentominoSquares[1][i]).classList.add('ghost')
+    for (let i = 0; i < presetStates.rPentomino[1].length; i++) {
+      document.getElementById(presetStates.rPentomino[1][i]).classList.add('ghost')
     }
   }
 
