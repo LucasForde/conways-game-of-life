@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdInfo, MdPlayCircle } from 'react-icons/md'
-import * as presetStates from '../constants/presetStates'
+import * as initialState from '../constants/initialState'
 
 class TempComponent extends React.Component {
   constructor (props) {
@@ -57,48 +57,48 @@ class TempComponent extends React.Component {
   glidersSpaceships () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.glidersSpaceships[0].length; i++) {
-      document.getElementById(presetStates.glidersSpaceships[0][i]).classList.add('live')
+    for (let i = 0; i < initialState.glidersSpaceships[0].length; i++) {
+      document.getElementById(initialState.glidersSpaceships[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.glidersSpaceships[1].length; i++) {
-      document.getElementById(presetStates.glidersSpaceships[1][i]).classList.add('ghost')
+    for (let i = 0; i < initialState.glidersSpaceships[1].length; i++) {
+      document.getElementById(initialState.glidersSpaceships[1][i]).classList.add('ghost')
     }
   }
 
   gliderGun () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.gliderGun[0].length; i++) {
-      document.getElementById(presetStates.gliderGun[0][i]).classList.add('live')
+    for (let i = 0; i < initialState.gliderGun[0].length; i++) {
+      document.getElementById(initialState.gliderGun[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.gliderGun[1].length; i++) {
-      document.getElementById(presetStates.gliderGun[1][i]).classList.add('ghost')
+    for (let i = 0; i < initialState.gliderGun[1].length; i++) {
+      document.getElementById(initialState.gliderGun[1][i]).classList.add('ghost')
     }
   }
 
   oscillator () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.oscillator[0].length; i++) {
-      document.getElementById(presetStates.oscillator[0][i]).classList.add('live')
+    for (let i = 0; i < initialState.oscillator[0].length; i++) {
+      document.getElementById(initialState.oscillator[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.oscillator[1].length; i++) {
-      document.getElementById(presetStates.oscillator[1][i]).classList.add('ghost')
+    for (let i = 0; i < initialState.oscillator[1].length; i++) {
+      document.getElementById(initialState.oscillator[1][i]).classList.add('ghost')
     }
   }
 
   rPentomino () {
     this.clearGrid()
 
-    for (let i = 0; i < presetStates.rPentomino[0].length; i++) {
-      document.getElementById(presetStates.rPentomino[0][i]).classList.add('live')
+    for (let i = 0; i < initialState.rPentomino[0].length; i++) {
+      document.getElementById(initialState.rPentomino[0][i]).classList.add('live')
     }
 
-    for (let i = 0; i < presetStates.rPentomino[1].length; i++) {
-      document.getElementById(presetStates.rPentomino[1][i]).classList.add('ghost')
+    for (let i = 0; i < initialState.rPentomino[1].length; i++) {
+      document.getElementById(initialState.rPentomino[1][i]).classList.add('ghost')
     }
   }
 
