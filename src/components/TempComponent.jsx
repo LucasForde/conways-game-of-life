@@ -7,7 +7,7 @@ class TempComponent extends React.Component {
     super(props)
 
     this.squares = []
-    this.squareCollection = document.getElementsByTagName('li')
+    this.squareCollection = document.getElementsByClassName('square')
     this.liveSquareCollection = document.getElementsByClassName('live')
     this.ghostSquareCollection = document.getElementsByClassName('ghost')
 
@@ -239,7 +239,7 @@ class TempComponent extends React.Component {
       for (let j = 0; j < this.state.cols; j++) {
         squareId = i + '-' + j
 
-        this.squares.push(<li id={squareId} key={squareId} onClick={this.squareClick.bind(this, squareId)} />)
+        this.squares.push(<div className='square' id={squareId} key={squareId} onClick={this.squareClick.bind(this, squareId)} />)
       }
     }
   }
@@ -281,9 +281,9 @@ class TempComponent extends React.Component {
           </a>
         </header>
 
-        <ul className='grid'>
+        <div className='grid'>
           {this.squares}
-        </ul>
+        </div>
       </>
     )
   }

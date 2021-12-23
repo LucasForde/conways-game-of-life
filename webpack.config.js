@@ -27,6 +27,11 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.(png|jpg)$/,
+        exclude: /node_modules/,
+        use: ['url-loader']
       }
     ]
   },
