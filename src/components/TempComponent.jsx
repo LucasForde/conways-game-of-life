@@ -6,21 +6,21 @@ class TempComponent extends React.Component {
   constructor (props) {
     super(props)
 
-    this.squares = []
-    this.squareCollection = document.getElementsByClassName('square')
-    this.liveSquareCollection = document.getElementsByClassName('live')
-    this.ghostSquareCollection = document.getElementsByClassName('ghost')
+    this.cells = []
+    this.cellCollection = document.getElementsByClassName('cell')
+    this.liveCellCollection = document.getElementsByClassName('live')
+    this.ghostCellCollection = document.getElementsByClassName('ghost')
 
     this.playing = null
 
     this.state = {
-      speed: 25,
+      speed: 100,
       rows: 100,
       cols: 100
     }
   }
 
-  squareClick (thisId) {
+  cellClick (thisId) {
     this.stop()
 
     if (document.getElementById(thisId).classList.contains('live')) {
@@ -43,13 +43,13 @@ class TempComponent extends React.Component {
   randomState () {
     this.stop()
 
-    for (let i = 0; i < this.squareCollection.length; i++) {
-      this.squareCollection[i].classList.remove('live', 'ghost')
+    for (let i = 0; i < this.cellCollection.length; i++) {
+      this.cellCollection[i].classList.remove('live', 'ghost')
 
       var x = Math.floor((Math.random() * 4) + 1)
 
       if (x === 4) {
-        this.squareCollection[i].classList.add('live')
+        this.cellCollection[i].classList.add('live')
       }
     }
   }
@@ -111,8 +111,8 @@ class TempComponent extends React.Component {
   clearGrid () {
     this.stop()
 
-    for (let i = 0; i < this.squareCollection.length; i++) {
-      this.squareCollection[i].classList.remove('live', 'ghost')
+    for (let i = 0; i < this.cellCollection.length; i++) {
+      this.cellCollection[i].classList.remove('live', 'ghost')
     }
   }
 
@@ -171,35 +171,35 @@ class TempComponent extends React.Component {
   }
 
   iteration () {
-    const liveSquareNeighbours = this.getNeighboursOfCollection(this.liveSquareCollection, 'live')
-    const ghostSquareNeighbours = this.getNeighboursOfCollection(this.ghostSquareCollection, 'live')
-    const liveSquareCleanup = []
+    const liveCellNeighbours = this.getNeighboursOfCollection(this.liveCellCollection, 'live')
+    const ghostCellNeighbours = this.getNeighboursOfCollection(this.ghostCellCollection, 'live')
+    const liveCellCleanup = []
 
-    for (let i = 0; i < liveSquareNeighbours.length; i++) {
-      const thisSquareInfo = liveSquareNeighbours[i].split(',')
-      const liveSquareId = thisSquareInfo[0]
-      const neighbourCountInt = parseInt(thisSquareInfo[1], 10)
+    for (let i = 0; i < liveCellNeighbours.length; i++) {
+      const thisCellInfo = liveCellNeighbours[i].split(',')
+      const liveCellId = thisCellInfo[0]
+      const neighbourCountInt = parseInt(thisCellInfo[1], 10)
 
-      liveSquareCleanup.push(liveSquareId)
+      liveCellCleanup.push(liveCellId)
 
       if (neighbourCountInt < 2 || neighbourCountInt > 3) {
-        document.getElementById(liveSquareId).classList.remove('live')
-        document.getElementById(liveSquareId).classList.add('ghost')
+        document.getElementById(liveCellId).classList.remove('live')
+        document.getElementById(liveCellId).classList.add('ghost')
       }
     }
 
-    for (let i = 0; i < ghostSquareNeighbours.length; i++) {
-      const thisSquareInfo = ghostSquareNeighbours[i].split(',')
-      const ghostSquareId = thisSquareInfo[0]
-      const neighbourCountInt = parseInt(thisSquareInfo[1], 10)
+    for (let i = 0; i < ghostCellNeighbours.length; i++) {
+      const thisCellInfo = ghostCellNeighbours[i].split(',')
+      const ghostCellId = thisCellInfo[0]
+      const neighbourCountInt = parseInt(thisCellInfo[1], 10)
 
       if (neighbourCountInt === 3) {
-        document.getElementById(ghostSquareId).classList.remove('ghost')
-        document.getElementById(ghostSquareId).classList.add('live')
+        document.getElementById(ghostCellId).classList.remove('ghost')
+        document.getElementById(ghostCellId).classList.add('live')
 
-        liveSquareCleanup.push(ghostSquareId)
+        liveCellCleanup.push(ghostCellId)
 
-        const neighbours = this.getNeighbours(ghostSquareId)
+        const neighbours = this.getNeighbours(ghostCellId)
 
         for (let i = 0; i < neighbours.length; i++) {
           if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
@@ -207,22 +207,22 @@ class TempComponent extends React.Component {
           }
         }
       } else if (neighbourCountInt === 0) {
-        document.getElementById(ghostSquareId).classList.remove('ghost')
+        document.getElementById(ghostCellId).classList.remove('ghost')
       }
     }
 
-    const liveSquareCleanupCollection = []
+    const liveCellCleanupCollection = []
 
-    for (let i = 0; i < liveSquareCleanup.length; i++) {
-      liveSquareCleanupCollection.push(document.getElementById(liveSquareCleanup[i]))
+    for (let i = 0; i < liveCellCleanup.length; i++) {
+      liveCellCleanupCollection.push(document.getElementById(liveCellCleanup[i]))
     }
 
-    const liveSquareCleanupNeighbours = this.getNeighboursOfCollection(liveSquareCleanupCollection, 'live')
+    const liveCellCleanupNeighbours = this.getNeighboursOfCollection(liveCellCleanupCollection, 'live')
 
-    for (let i = 0; i < liveSquareCleanupNeighbours.length; i++) {
-      const thisSquareInfo = liveSquareCleanupNeighbours[i].split(',')
-      const liveSquareCleanupId = thisSquareInfo[0]
-      const neighbours = this.getNeighbours(liveSquareCleanupId)
+    for (let i = 0; i < liveCellCleanupNeighbours.length; i++) {
+      const thisCellInfo = liveCellCleanupNeighbours[i].split(',')
+      const liveCellCleanupId = thisCellInfo[0]
+      const neighbours = this.getNeighbours(liveCellCleanupId)
 
       for (let i = 0; i < neighbours.length; i++) {
         if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
@@ -233,13 +233,11 @@ class TempComponent extends React.Component {
   }
 
   createGrid () {
-    let squareId = ''
-
     for (let i = 0; i < this.state.rows; i++) {
       for (let j = 0; j < this.state.cols; j++) {
-        squareId = i + '-' + j
+        const cellId = i + '-' + j
 
-        this.squares.push(<div className='square' id={squareId} key={squareId} onClick={this.squareClick.bind(this, squareId)} />)
+        this.cells.push(<div className='cell' id={cellId} key={cellId} onClick={this.cellClick.bind(this, cellId)} />)
       }
     }
   }
@@ -282,7 +280,7 @@ class TempComponent extends React.Component {
         </header>
 
         <div className='grid'>
-          {this.squares}
+          {this.cells}
         </div>
       </>
     )
