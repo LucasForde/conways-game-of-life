@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import TempComponent from './components/TempComponent'
+import MainComponent from './components/MainComponent'
 import './styles/app.scss'
 
 const App = () => {
   return (
-    <TempComponent />
+    <MainComponent />
   )
 }
 
