@@ -1,14 +1,22 @@
-import React, { FunctionComponent, useEffect } from 'react'
-import { MdInfo, MdPlayCircle } from 'react-icons/md'
+import React, { FunctionComponent } from 'react'
+import { MdInfo, MdPlayCircle, MdStopCircle } from 'react-icons/md'
 import grid from '../constants/grid'
 import * as presets from '../constants/presets'
 
 const MainComponent: FunctionComponent = () => {
-  const cells = []
   const cellCollection = document.getElementsByClassName('cell')
   const liveCellCollection = document.getElementsByClassName('live')
   const ghostCellCollection = document.getElementsByClassName('ghost')
-  const speed = 100
+  const speed = 25
+
+  const run = {
+    start: function () {
+      this.interval = setInterval(iteration, speed)
+    },
+    stop: function () {
+      clearInterval(this.interval)
+    }
+  }
 
   const iteration = () => {
     const liveCellNeighbours = getNeighboursOfCollection(liveCellCollection, 'live')
@@ -72,22 +80,8 @@ const MainComponent: FunctionComponent = () => {
     }
   }
 
-  const play = () => {
-    // document.getElementById('play').classList.add('hide')
-    // document.getElementById('stop').classList.remove('hide')
-
-    setInterval(iteration, speed)
-  }
-
-  const stop = () => {
-    // document.getElementById('play').classList.remove('hide')
-    // document.getElementById('stop').classList.add('hide')
-
-    // clearInterval(playing)
-  }
-
   const clearGrid = () => {
-    stop()
+    run.stop()
 
     for (let i = 0; i < cellCollection.length; i++) {
       cellCollection[i].classList.remove('live', 'ghost')
@@ -95,7 +89,7 @@ const MainComponent: FunctionComponent = () => {
   }
 
   const cellClick = (thisId) => {
-    stop()
+    run.stop()
 
     if (document.getElementById(thisId).classList.contains('live')) {
       document.getElementById(thisId).classList.add('ghost')
@@ -115,7 +109,7 @@ const MainComponent: FunctionComponent = () => {
   }
 
   const randomState = () => {
-    stop()
+    run.stop()
 
     for (let i = 0; i < cellCollection.length; i++) {
       cellCollection[i].classList.remove('live', 'ghost')
@@ -177,7 +171,7 @@ const MainComponent: FunctionComponent = () => {
   }
 
   const nextGeneration = () => {
-    stop()
+    run.stop()
 
     iteration()
   }
@@ -221,34 +215,34 @@ const MainComponent: FunctionComponent = () => {
   }
 
   const createGrid = () => {
+    let cells = []
+
     for (let i = 0; i < grid.rows; i++) {
       for (let j = 0; j < grid.cols; j++) {
         const cellId = i + '-' + j
 
-        cells.push(<div className='cell' id={cellId} key={cellId} onClick={cellClick.bind(this, cellId)} />)
+        cells = [...cells, <div className='cell' id={cellId} key={cellId} onClick={cellClick.bind(this, cellId)} />]
       }
     }
-  }
 
-  useEffect(() => {
-    createGrid()
-  }, [])
+    return cells
+  }
 
   return (
     <>
       <header>
         <MdPlayCircle
-          onClick={play.bind(this)}
-          id='play'
+          onClick={() => run.start()}
+          id='run'
           className='icon'
           size={24}
         />
-        {/* <MdStopCircle
-          onClick={stop.bind(this)}
+        <MdStopCircle
+          onClick={() => run.stop()}
           id='stop'
           className='icon'
           size={24}
-        /> */}
+        />
 
         <nav>
           <button onClick={randomState.bind(this)}>Random State</button>
@@ -269,7 +263,7 @@ const MainComponent: FunctionComponent = () => {
       </header>
 
       <div className='grid'>
-        {cells}
+        {createGrid()}
       </div>
     </>
   )
