@@ -221,7 +221,7 @@ const MainComponent: FunctionComponent = () => {
       for (let j = 0; j < grid.cols; j++) {
         const cellId = i + '-' + j
 
-        cells = [...cells, <div className='cell' id={cellId} key={cellId} onClick={cellClick.bind(this, cellId)} />]
+        cells = [...cells, <div className='cell' id={cellId} key={cellId} onClick={() => cellClick(cellId)} />]
       }
     }
 
@@ -245,13 +245,13 @@ const MainComponent: FunctionComponent = () => {
         />
 
         <nav>
-          <button onClick={randomState.bind(this)}>Random State</button>
-          <button onClick={glidersSpaceships.bind(this)}>Gliders &amp; Spaceships</button>
-          <button onClick={gliderGun.bind(this)}>Glider Guns</button>
-          <button onClick={oscillator.bind(this)}>Oscillator</button>
-          <button onClick={rPentomino.bind(this)}>R-Pentomino</button>
-          <button onClick={nextGeneration.bind(this)}>Next Generation</button>
-          <button onClick={clearGrid.bind(this)}>Clear Grid</button>
+          <button onClick={() => randomState()}>Random State</button>
+          <button onClick={() => glidersSpaceships()}>Gliders &amp; Spaceships</button>
+          <button onClick={() => gliderGun()}>Glider Guns</button>
+          <button onClick={() => oscillator()}>Oscillator</button>
+          <button onClick={() => rPentomino()}>R-Pentomino</button>
+          <button onClick={() => nextGeneration()}>Next Generation</button>
+          <button onClick={() => clearGrid()}>Clear Grid</button>
         </nav>
 
         <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target='blank'>
