@@ -26,7 +26,7 @@ const MainComponent: FunctionComponent = () => {
     for (let i = 0; i < liveCellNeighbours.length; i++) {
       const cellInfo = liveCellNeighbours[i].split(',')
       const liveCellId = cellInfo[0]
-      const neighbourCountInt = parseInt(cellInfo[1], 10)
+      const neighbourCountInt = Number(cellInfo[1])
 
       liveCellCleanup.push(liveCellId)
 
@@ -39,7 +39,7 @@ const MainComponent: FunctionComponent = () => {
     for (let i = 0; i < ghostCellNeighbours.length; i++) {
       const cellInfo = ghostCellNeighbours[i].split(',')
       const ghostCellId = cellInfo[0]
-      const neighbourCountInt = parseInt(cellInfo[1], 10)
+      const neighbourCountInt = Number(cellInfo[1])
 
       if (neighbourCountInt === 3) {
         document.getElementById(ghostCellId).classList.remove('ghost')
@@ -178,8 +178,8 @@ const MainComponent: FunctionComponent = () => {
 
   const getNeighbours = (id) => {
     const idSplit = id.split('-')
-    const idSplitIntFirst = parseInt(idSplit[0], 10)
-    const idSplitIntSecond = parseInt(idSplit[1], 10)
+    const idSplitIntFirst = Number(idSplit[0])
+    const idSplitIntSecond = Number(idSplit[1])
     const neighbours = []
 
     neighbours.push((idSplitIntFirst - 1) + '-' + idSplit[1])
