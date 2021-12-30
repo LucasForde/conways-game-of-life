@@ -24,9 +24,9 @@ const MainComponent: FunctionComponent = () => {
     const liveCellCleanup = []
 
     for (let i = 0; i < liveCellNeighbours.length; i++) {
-      const thisCellInfo = liveCellNeighbours[i].split(',')
-      const liveCellId = thisCellInfo[0]
-      const neighbourCountInt = parseInt(thisCellInfo[1], 10)
+      const cellInfo = liveCellNeighbours[i].split(',')
+      const liveCellId = cellInfo[0]
+      const neighbourCountInt = parseInt(cellInfo[1], 10)
 
       liveCellCleanup.push(liveCellId)
 
@@ -37,9 +37,9 @@ const MainComponent: FunctionComponent = () => {
     }
 
     for (let i = 0; i < ghostCellNeighbours.length; i++) {
-      const thisCellInfo = ghostCellNeighbours[i].split(',')
-      const ghostCellId = thisCellInfo[0]
-      const neighbourCountInt = parseInt(thisCellInfo[1], 10)
+      const cellInfo = ghostCellNeighbours[i].split(',')
+      const ghostCellId = cellInfo[0]
+      const neighbourCountInt = parseInt(cellInfo[1], 10)
 
       if (neighbourCountInt === 3) {
         document.getElementById(ghostCellId).classList.remove('ghost')
@@ -68,8 +68,8 @@ const MainComponent: FunctionComponent = () => {
     const liveCellCleanupNeighbours = getNeighboursOfCollection(liveCellCleanupCollection, 'live')
 
     for (let i = 0; i < liveCellCleanupNeighbours.length; i++) {
-      const thisCellInfo = liveCellCleanupNeighbours[i].split(',')
-      const liveCellCleanupId = thisCellInfo[0]
+      const cellInfo = liveCellCleanupNeighbours[i].split(',')
+      const liveCellCleanupId = cellInfo[0]
       const neighbours = getNeighbours(liveCellCleanupId)
 
       for (let i = 0; i < neighbours.length; i++) {
@@ -88,17 +88,17 @@ const MainComponent: FunctionComponent = () => {
     }
   }
 
-  const cellClick = (thisId) => {
+  const cellClick = (id) => {
     run.stop()
 
-    if (document.getElementById(thisId).classList.contains('live')) {
-      document.getElementById(thisId).classList.add('ghost')
-      document.getElementById(thisId).classList.remove('live')
+    if (document.getElementById(id).classList.contains('live')) {
+      document.getElementById(id).classList.add('ghost')
+      document.getElementById(id).classList.remove('live')
     } else {
-      document.getElementById(thisId).classList.add('live')
-      document.getElementById(thisId).classList.remove('ghost')
+      document.getElementById(id).classList.add('live')
+      document.getElementById(id).classList.remove('ghost')
 
-      const neighbours = getNeighbours(thisId)
+      const neighbours = getNeighbours(id)
 
       for (let i = 0; i < neighbours.length; i++) {
         if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
@@ -176,39 +176,39 @@ const MainComponent: FunctionComponent = () => {
     iteration()
   }
 
-  const getNeighbours = (thisId) => {
-    const thisIdSplit = thisId.split('-')
-    const thisIdSplitIntFirst = parseInt(thisIdSplit[0], 10)
-    const thisIdSplitIntSecond = parseInt(thisIdSplit[1], 10)
+  const getNeighbours = (id) => {
+    const idSplit = id.split('-')
+    const idSplitIntFirst = parseInt(idSplit[0], 10)
+    const idSplitIntSecond = parseInt(idSplit[1], 10)
     const neighbours = []
 
-    neighbours.push((thisIdSplitIntFirst - 1) + '-' + thisIdSplit[1])
-    neighbours.push((thisIdSplitIntFirst - 1) + '-' + (thisIdSplitIntSecond + 1))
-    neighbours.push(thisIdSplit[0] + '-' + (thisIdSplitIntSecond + 1))
-    neighbours.push((thisIdSplitIntFirst + 1) + '-' + (thisIdSplitIntSecond + 1))
-    neighbours.push((thisIdSplitIntFirst + 1) + '-' + thisIdSplit[1])
-    neighbours.push((thisIdSplitIntFirst + 1) + '-' + (thisIdSplitIntSecond - 1))
-    neighbours.push(thisIdSplit[0] + '-' + (thisIdSplitIntSecond - 1))
-    neighbours.push((thisIdSplitIntFirst - 1) + '-' + (thisIdSplitIntSecond - 1))
+    neighbours.push((idSplitIntFirst - 1) + '-' + idSplit[1])
+    neighbours.push((idSplitIntFirst - 1) + '-' + (idSplitIntSecond + 1))
+    neighbours.push(idSplit[0] + '-' + (idSplitIntSecond + 1))
+    neighbours.push((idSplitIntFirst + 1) + '-' + (idSplitIntSecond + 1))
+    neighbours.push((idSplitIntFirst + 1) + '-' + idSplit[1])
+    neighbours.push((idSplitIntFirst + 1) + '-' + (idSplitIntSecond - 1))
+    neighbours.push(idSplit[0] + '-' + (idSplitIntSecond - 1))
+    neighbours.push((idSplitIntFirst - 1) + '-' + (idSplitIntSecond - 1))
 
     return neighbours
   }
 
-  const getNeighboursOfCollection = (thisCollection, classIdentifier) => {
+  const getNeighboursOfCollection = (collection, className) => {
     const neighboursOfCollection = []
 
-    for (let i = 0; i < thisCollection.length; i++) {
-      const neighbours = getNeighbours(thisCollection[i].id)
+    for (let i = 0; i < collection.length; i++) {
+      const neighbours = getNeighbours(collection[i].id)
 
       const neighboursCount = []
 
       for (let i = 0; i < neighbours.length; i++) {
-        if (document.getElementById(neighbours[i]) != null && document.getElementById(neighbours[i]).classList.contains(classIdentifier)) {
+        if (document.getElementById(neighbours[i]) != null && document.getElementById(neighbours[i]).classList.contains(className)) {
           neighboursCount.push(i + 1)
         }
       }
 
-      neighboursOfCollection.push(thisCollection[i].id + ',' + neighboursCount.length)
+      neighboursOfCollection.push(collection[i].id + ',' + neighboursCount.length)
     }
 
     return neighboursOfCollection
