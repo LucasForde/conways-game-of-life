@@ -122,51 +122,15 @@ const App: FunctionComponent = () => {
     }
   }
 
-  const glidersSpaceships = () => {
+  const presetInitialState = (preset) => {
     clearGrid()
 
-    for (let i = 0; i < presets.glidersSpaceships[0].length; i++) {
-      document.getElementById(presets.glidersSpaceships[0][i]).classList.add('live')
+    for (let i = 0; i < preset.liveCellIds.length; i++) {
+      document.getElementById(preset.liveCellIds[i]).classList.add('live')
     }
 
-    for (let i = 0; i < presets.glidersSpaceships[1].length; i++) {
-      document.getElementById(presets.glidersSpaceships[1][i]).classList.add('ghost')
-    }
-  }
-
-  const gliderGun = () => {
-    clearGrid()
-
-    for (let i = 0; i < presets.gliderGun[0].length; i++) {
-      document.getElementById(presets.gliderGun[0][i]).classList.add('live')
-    }
-
-    for (let i = 0; i < presets.gliderGun[1].length; i++) {
-      document.getElementById(presets.gliderGun[1][i]).classList.add('ghost')
-    }
-  }
-
-  const oscillator = () => {
-    clearGrid()
-
-    for (let i = 0; i < presets.oscillator[0].length; i++) {
-      document.getElementById(presets.oscillator[0][i]).classList.add('live')
-    }
-
-    for (let i = 0; i < presets.oscillator[1].length; i++) {
-      document.getElementById(presets.oscillator[1][i]).classList.add('ghost')
-    }
-  }
-
-  const rPentomino = () => {
-    clearGrid()
-
-    for (let i = 0; i < presets.rPentomino[0].length; i++) {
-      document.getElementById(presets.rPentomino[0][i]).classList.add('live')
-    }
-
-    for (let i = 0; i < presets.rPentomino[1].length; i++) {
-      document.getElementById(presets.rPentomino[1][i]).classList.add('ghost')
+    for (let i = 0; i < preset.ghostCellIds.length; i++) {
+      document.getElementById(preset.ghostCellIds[i]).classList.add('ghost')
     }
   }
 
@@ -246,10 +210,10 @@ const App: FunctionComponent = () => {
 
         <nav>
           <button onClick={() => randomState()}>Random State</button>
-          <button onClick={() => glidersSpaceships()}>Gliders &amp; Spaceships</button>
-          <button onClick={() => gliderGun()}>Glider Guns</button>
-          <button onClick={() => oscillator()}>Oscillator</button>
-          <button onClick={() => rPentomino()}>R-Pentomino</button>
+          <button onClick={() => presetInitialState(presets.glidersSpaceships)}>Gliders &amp; Spaceships</button>
+          <button onClick={() => presetInitialState(presets.gliderGuns)}>Glider Guns</button>
+          <button onClick={() => presetInitialState(presets.oscillator)}>Oscillator</button>
+          <button onClick={() => presetInitialState(presets.rPentomino)}>R-Pentomino</button>
           <button onClick={() => nextGeneration()}>Next Generation</button>
           <button onClick={() => clearGrid()}>Clear Grid</button>
         </nav>
