@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react'
 import { MdInfo, MdPlayCircle, MdStopCircle } from 'react-icons/md'
 import * as presets from './constants/presets'
+import { addClassNames } from './utils/helpers'
 
 const App: FunctionComponent = () => {
-  const cellCollection = document.getElementsByClassName('cell')
-  const liveCellCollection = document.getElementsByClassName('live')
-  const ghostCellCollection = document.getElementsByClassName('ghost')
+  const allCells = document.getElementsByClassName('cell')
+  const liveCells = document.getElementsByClassName('live')
+  const ghostCells = document.getElementsByClassName('ghost')
   const speed = 25
 
   const run = {
@@ -18,8 +19,8 @@ const App: FunctionComponent = () => {
   }
 
   const iteration = () => {
-    const liveCellNeighbours = getNeighboursOfCollection(liveCellCollection, 'live')
-    const ghostCellNeighbours = getNeighboursOfCollection(ghostCellCollection, 'live')
+    const liveCellNeighbours = getAllNeighbours(liveCells, 'live')
+    const ghostCellNeighbours = getAllNeighbours(ghostCells, 'live')
     const liveCellCleanup = []
 
     for (let i = 0; i < liveCellNeighbours.length; i++) {
@@ -64,7 +65,7 @@ const App: FunctionComponent = () => {
       liveCellCleanupCollection.push(document.getElementById(liveCellCleanup[i]))
     }
 
-    const liveCellCleanupNeighbours = getNeighboursOfCollection(liveCellCleanupCollection, 'live')
+    const liveCellCleanupNeighbours = getAllNeighbours(liveCellCleanupCollection, 'live')
 
     for (let i = 0; i < liveCellCleanupNeighbours.length; i++) {
       const cellInfo = liveCellCleanupNeighbours[i].split(',')
@@ -82,7 +83,7 @@ const App: FunctionComponent = () => {
   const clearGrid = () => {
     run.stop()
 
-    Array.from(cellCollection).forEach(item => {
+    Array.from(allCells).forEach(item => {
       item.classList.remove('live', 'ghost')
     })
   }
@@ -110,18 +111,12 @@ const App: FunctionComponent = () => {
   const randomState = () => {
     clearGrid()
 
-    Array.from(cellCollection).forEach(item => {
+    Array.from(allCells).forEach(item => {
       const x = Math.floor(Math.random() * 4) + 1
 
       if (x === 4) {
         item.classList.add('live')
       }
-    })
-  }
-
-  const addClassNames = (cellIds, className) => {
-    cellIds.forEach(item => {
-      document.getElementById(item).classList.add(className)
     })
   }
 
@@ -156,11 +151,11 @@ const App: FunctionComponent = () => {
     return neighbours
   }
 
-  const getNeighboursOfCollection = (collection, className) => {
-    const neighboursOfCollection = []
+  const getAllNeighbours = (cells, className) => {
+    const allNeighbours = []
 
-    for (let i = 0; i < collection.length; i++) {
-      const neighbours = getNeighbours(collection[i].id)
+    for (let i = 0; i < cells.length; i++) {
+      const neighbours = getNeighbours(cells[i].id)
 
       const neighboursCount = []
 
@@ -170,10 +165,10 @@ const App: FunctionComponent = () => {
         }
       }
 
-      neighboursOfCollection.push(collection[i].id + ',' + neighboursCount.length)
+      allNeighbours.push(cells[i].id + ',' + neighboursCount.length)
     }
 
-    return neighboursOfCollection
+    return allNeighbours
   }
 
   const createGrid = () => {
