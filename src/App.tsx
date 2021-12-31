@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 import { MdInfo, MdPlayCircle, MdStopCircle } from 'react-icons/md'
-import grid from './constants/grid'
 import * as presets from './constants/presets'
 
 const App: FunctionComponent = () => {
@@ -83,9 +82,9 @@ const App: FunctionComponent = () => {
   const clearGrid = () => {
     run.stop()
 
-    for (let i = 0; i < cellCollection.length; i++) {
-      cellCollection[i].classList.remove('live', 'ghost')
-    }
+    Array.from(cellCollection).forEach(item => {
+      item.classList.remove('live', 'ghost')
+    })
   }
 
   const cellClick = (id) => {
@@ -109,34 +108,33 @@ const App: FunctionComponent = () => {
   }
 
   const randomState = () => {
-    run.stop()
+    clearGrid()
 
-    for (let i = 0; i < cellCollection.length; i++) {
-      cellCollection[i].classList.remove('live', 'ghost')
-
-      var x = Math.floor((Math.random() * 4) + 1)
+    Array.from(cellCollection).forEach(item => {
+      const x = Math.floor(Math.random() * 4) + 1
 
       if (x === 4) {
-        cellCollection[i].classList.add('live')
+        item.classList.add('live')
       }
-    }
+    })
+  }
+
+  const addClassNames = (cellIds, className) => {
+    cellIds.forEach(item => {
+      document.getElementById(item).classList.add(className)
+    })
   }
 
   const presetInitialState = (preset) => {
+    const { liveCellIds, ghostCellIds } = preset
     clearGrid()
 
-    for (let i = 0; i < preset.liveCellIds.length; i++) {
-      document.getElementById(preset.liveCellIds[i]).classList.add('live')
-    }
-
-    for (let i = 0; i < preset.ghostCellIds.length; i++) {
-      document.getElementById(preset.ghostCellIds[i]).classList.add('ghost')
-    }
+    addClassNames(liveCellIds, 'live')
+    addClassNames(ghostCellIds, 'ghost')
   }
 
   const nextGeneration = () => {
     run.stop()
-
     iteration()
   }
 
@@ -179,11 +177,12 @@ const App: FunctionComponent = () => {
   }
 
   const createGrid = () => {
+    const gridSize = 100
     let cells = []
 
-    for (let i = 0; i < grid.rows; i++) {
-      for (let j = 0; j < grid.cols; j++) {
-        const cellId = i + '-' + j
+    for (let i = 0; i < gridSize; i++) {
+      for (let j = 0; j < gridSize; j++) {
+        const cellId = `${i}-${j}`
 
         cells = [...cells, <div className='cell' id={cellId} key={cellId} onClick={() => cellClick(cellId)} />]
       }
