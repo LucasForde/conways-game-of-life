@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import { MdInfo, MdPlayCircle, MdStopCircle } from 'react-icons/md'
-import grid from '../constants/grid'
-import * as presets from '../constants/presets'
+import grid from './constants/grid'
+import * as presets from './constants/presets'
 
-const MainComponent: FunctionComponent = () => {
+const App: FunctionComponent = () => {
   const cellCollection = document.getElementsByClassName('cell')
   const liveCellCollection = document.getElementsByClassName('live')
   const ghostCellCollection = document.getElementsByClassName('ghost')
@@ -269,4 +269,4 @@ const MainComponent: FunctionComponent = () => {
   )
 }
 
-export default MainComponent
+export default App
