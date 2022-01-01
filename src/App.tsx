@@ -1,93 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import { MdInfo, MdPlayCircle, MdStopCircle } from 'react-icons/md'
-import * as presets from './constants/presets'
-import { addClassNames } from './utils/helpers'
+import { getNeighbours } from './utils/neighbours'
+import run from './utils/run'
+import Header from './components/Header'
 
 const App: FunctionComponent = () => {
-  const allCells = document.getElementsByClassName('cell')
-  const liveCells = document.getElementsByClassName('live')
-  const ghostCells = document.getElementsByClassName('ghost')
-  const speed = 25
-
-  const run = {
-    start: function () {
-      this.interval = setInterval(iteration, speed)
-    },
-    stop: function () {
-      clearInterval(this.interval)
-    }
-  }
-
-  const iteration = () => {
-    const liveCellNeighbours = getAllNeighbours(liveCells, 'live')
-    const ghostCellNeighbours = getAllNeighbours(ghostCells, 'live')
-    const liveCellCleanup = []
-
-    for (let i = 0; i < liveCellNeighbours.length; i++) {
-      const cellInfo = liveCellNeighbours[i].split(',')
-      const liveCellId = cellInfo[0]
-      const neighbourCountInt = Number(cellInfo[1])
-
-      liveCellCleanup.push(liveCellId)
-
-      if (neighbourCountInt < 2 || neighbourCountInt > 3) {
-        document.getElementById(liveCellId).classList.remove('live')
-        document.getElementById(liveCellId).classList.add('ghost')
-      }
-    }
-
-    for (let i = 0; i < ghostCellNeighbours.length; i++) {
-      const cellInfo = ghostCellNeighbours[i].split(',')
-      const ghostCellId = cellInfo[0]
-      const neighbourCountInt = Number(cellInfo[1])
-
-      if (neighbourCountInt === 3) {
-        document.getElementById(ghostCellId).classList.remove('ghost')
-        document.getElementById(ghostCellId).classList.add('live')
-
-        liveCellCleanup.push(ghostCellId)
-
-        const neighbours = getNeighbours(ghostCellId)
-
-        for (let i = 0; i < neighbours.length; i++) {
-          if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
-            document.getElementById(neighbours[i]).classList.add('ghost')
-          }
-        }
-      } else if (neighbourCountInt === 0) {
-        document.getElementById(ghostCellId).classList.remove('ghost')
-      }
-    }
-
-    const liveCellCleanupCollection = []
-
-    for (let i = 0; i < liveCellCleanup.length; i++) {
-      liveCellCleanupCollection.push(document.getElementById(liveCellCleanup[i]))
-    }
-
-    const liveCellCleanupNeighbours = getAllNeighbours(liveCellCleanupCollection, 'live')
-
-    for (let i = 0; i < liveCellCleanupNeighbours.length; i++) {
-      const cellInfo = liveCellCleanupNeighbours[i].split(',')
-      const liveCellCleanupId = cellInfo[0]
-      const neighbours = getNeighbours(liveCellCleanupId)
-
-      for (let i = 0; i < neighbours.length; i++) {
-        if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
-          document.getElementById(neighbours[i]).classList.add('ghost')
-        }
-      }
-    }
-  }
-
-  const clearGrid = () => {
-    run.stop()
-
-    Array.from(allCells).forEach(item => {
-      item.classList.remove('live', 'ghost')
-    })
-  }
-
   const cellClick = (id) => {
     run.stop()
 
@@ -108,69 +24,6 @@ const App: FunctionComponent = () => {
     }
   }
 
-  const randomState = () => {
-    clearGrid()
-
-    Array.from(allCells).forEach(item => {
-      const x = Math.floor(Math.random() * 4) + 1
-
-      if (x === 4) {
-        item.classList.add('live')
-      }
-    })
-  }
-
-  const presetInitialState = (preset) => {
-    const { liveCellIds, ghostCellIds } = preset
-    clearGrid()
-
-    addClassNames(liveCellIds, 'live')
-    addClassNames(ghostCellIds, 'ghost')
-  }
-
-  const nextGeneration = () => {
-    run.stop()
-    iteration()
-  }
-
-  const getNeighbours = (id) => {
-    const idSplit = id.split('-')
-    const idSplitIntFirst = Number(idSplit[0])
-    const idSplitIntSecond = Number(idSplit[1])
-    const neighbours = []
-
-    neighbours.push((idSplitIntFirst - 1) + '-' + idSplit[1])
-    neighbours.push((idSplitIntFirst - 1) + '-' + (idSplitIntSecond + 1))
-    neighbours.push(idSplit[0] + '-' + (idSplitIntSecond + 1))
-    neighbours.push((idSplitIntFirst + 1) + '-' + (idSplitIntSecond + 1))
-    neighbours.push((idSplitIntFirst + 1) + '-' + idSplit[1])
-    neighbours.push((idSplitIntFirst + 1) + '-' + (idSplitIntSecond - 1))
-    neighbours.push(idSplit[0] + '-' + (idSplitIntSecond - 1))
-    neighbours.push((idSplitIntFirst - 1) + '-' + (idSplitIntSecond - 1))
-
-    return neighbours
-  }
-
-  const getAllNeighbours = (cells, className) => {
-    const allNeighbours = []
-
-    for (let i = 0; i < cells.length; i++) {
-      const neighbours = getNeighbours(cells[i].id)
-
-      const neighboursCount = []
-
-      for (let i = 0; i < neighbours.length; i++) {
-        if (document.getElementById(neighbours[i]) != null && document.getElementById(neighbours[i]).classList.contains(className)) {
-          neighboursCount.push(i + 1)
-        }
-      }
-
-      allNeighbours.push(cells[i].id + ',' + neighboursCount.length)
-    }
-
-    return allNeighbours
-  }
-
   const createGrid = () => {
     const gridSize = 100
     let cells = []
@@ -188,37 +41,7 @@ const App: FunctionComponent = () => {
 
   return (
     <>
-      <header>
-        <MdPlayCircle
-          onClick={() => run.start()}
-          id='run'
-          className='icon'
-          size={24}
-        />
-        <MdStopCircle
-          onClick={() => run.stop()}
-          id='stop'
-          className='icon'
-          size={24}
-        />
-
-        <nav>
-          <button onClick={() => randomState()}>Random State</button>
-          <button onClick={() => presetInitialState(presets.glidersSpaceships)}>Gliders &amp; Spaceships</button>
-          <button onClick={() => presetInitialState(presets.gliderGuns)}>Glider Guns</button>
-          <button onClick={() => presetInitialState(presets.oscillator)}>Oscillator</button>
-          <button onClick={() => presetInitialState(presets.rPentomino)}>R-Pentomino</button>
-          <button onClick={() => nextGeneration()}>Next Generation</button>
-          <button onClick={() => clearGrid()}>Clear Grid</button>
-        </nav>
-
-        <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target='blank'>
-          <MdInfo
-            className='icon'
-            size={24}
-          />
-        </a>
-      </header>
+      <Header />
 
       <div className='grid'>
         {createGrid()}

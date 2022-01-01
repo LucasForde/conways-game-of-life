@@ -27,6 +27,7 @@ body {
 
 header {
   display: flex;
+  padding: 5px;
   background-color: $grid;
 
   .icon {
@@ -36,15 +37,14 @@ header {
   }
 
   nav {
+    display: flex;
+    align-items: center;
 
-    button {
+    div {
       @include font();
       color: $menu;
-      padding: 6px;
-      border: none;
-      margin: 0 4px;
-      background-color: transparent;
-      vertical-align: middle;
+      padding: 0 5px;
+      margin: 0 5px;
       cursor: pointer;
     }
   }
