@@ -23,6 +23,7 @@ body {
   outline: none;
   box-sizing: border-box;
   text-decoration: none;
+  user-select: none;
 }
 
 header {
@@ -64,5 +65,9 @@ header {
     &.live {
       background-color: $highlight;
     }
+
+    // &.ghost {
+    //   background-color: rgba($highlight, 0.2);
+    // }
   }
 }
