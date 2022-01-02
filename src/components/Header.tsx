@@ -1,26 +1,16 @@
 import React, { FunctionComponent } from 'react'
-import { MdInfo, MdPlayCircle, MdStopCircle } from 'react-icons/md'
+import { MdInfo } from 'react-icons/md'
 import * as presets from '../constants/presets'
 import run from '../utils/run'
 import randomState from '../utils/randomState'
 import presetState from '../utils/presetState'
 import clearGrid from '../utils/clearGrid'
+import Controls from './Controls'
 
 const Header: FunctionComponent = () => {
   return (
     <header>
-      <MdPlayCircle
-        onClick={() => run.start()}
-        id='run'
-        className='icon'
-        size={24}
-      />
-      <MdStopCircle
-        onClick={() => run.stop()}
-        id='stop'
-        className='icon'
-        size={24}
-      />
+      <Controls />
 
       <nav>
         <div onClick={() => randomState()}>Random State</div>
