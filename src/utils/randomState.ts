@@ -1,16 +1,17 @@
 import { allCells } from '../constants/elements'
 import clearGrid from './clearGrid'
+import generation from './generation'
 
 const randomState = () => {
   clearGrid()
 
   Array.from(allCells).forEach(item => {
-    const x = Math.floor(Math.random() * 4) + 1
-
-    if (x === 4) {
+    if (Math.random() < 0.18) {
       item.classList.add('live')
     }
   })
+
+  generation()
 }
 
 export default randomState
