@@ -1,12 +1,12 @@
-import { addClassNames } from './helpers'
+import addClassName from './addClassName'
 import clearGrid from './clearGrid'
 
 const presetInitialState = (preset) => {
   const { liveCellIds, ghostCellIds } = preset
   clearGrid()
 
-  addClassNames(liveCellIds, 'live')
-  addClassNames(ghostCellIds, 'ghost')
+  addClassName(liveCellIds, 'live')
+  addClassName(ghostCellIds, 'ghost')
 }
 
 export default presetInitialState
