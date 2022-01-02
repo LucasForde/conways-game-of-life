@@ -3,7 +3,7 @@ import { MdInfo, MdPlayCircle, MdStopCircle } from 'react-icons/md'
 import * as presets from '../constants/presets'
 import run from '../utils/run'
 import randomState from '../utils/randomState'
-import presetInitialState from '../utils/presetInitialState'
+import presetState from '../utils/presetState'
 import clearGrid from '../utils/clearGrid'
 
 const Header: FunctionComponent = () => {
@@ -24,10 +24,10 @@ const Header: FunctionComponent = () => {
 
       <nav>
         <div onClick={() => randomState()}>Random State</div>
-        <div onClick={() => presetInitialState(presets.glidersSpaceships)}>Gliders &amp; Spaceships</div>
-        <div onClick={() => presetInitialState(presets.gliderGuns)}>Glider Guns</div>
-        <div onClick={() => presetInitialState(presets.oscillator)}>Oscillator</div>
-        <div onClick={() => presetInitialState(presets.rPentomino)}>R-Pentomino</div>
+        <div onClick={() => presetState(presets.glidersSpaceships)}>Gliders &amp; Spaceships</div>
+        <div onClick={() => presetState(presets.gliderGuns)}>Glider Guns</div>
+        <div onClick={() => presetState(presets.oscillator)}>Oscillator</div>
+        <div onClick={() => presetState(presets.rPentomino)}>R-Pentomino</div>
         <div onClick={() => run.step()}>Next Generation</div>
         <div onClick={() => clearGrid()}>Clear Grid</div>
       </nav>
