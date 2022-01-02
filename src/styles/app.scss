@@ -40,12 +40,12 @@ header {
   nav {
     display: flex;
     align-items: center;
+    padding: 0 20px;
 
     div {
       @include font();
       color: $menu;
       padding: 0 5px;
-      margin: 0 5px;
       cursor: pointer;
     }
   }

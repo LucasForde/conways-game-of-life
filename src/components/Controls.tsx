@@ -1,19 +1,28 @@
 import React, { FunctionComponent } from 'react'
-import { MdPlayCircle, MdStopCircle } from 'react-icons/md'
+import { MdPlayArrow, MdStop, MdSkipNext, MdOutlineClear } from 'react-icons/md'
+import clearGrid from '../utils/clearGrid'
 import run from '../utils/run'
 
 const Controls: FunctionComponent = () => {
   return (
     <>
-      <MdPlayCircle
+      <MdPlayArrow
         onClick={() => run.start()}
-        id='run'
         className='icon'
         size={24}
       />
-      <MdStopCircle
+      <MdStop
         onClick={() => run.stop()}
-        id='stop'
+        className='icon'
+        size={24}
+      />
+      <MdSkipNext
+        onClick={() => run.step()}
+        className='icon'
+        size={24}
+      />
+      <MdOutlineClear
+        onClick={() => clearGrid()}
         className='icon'
         size={24}
       />
