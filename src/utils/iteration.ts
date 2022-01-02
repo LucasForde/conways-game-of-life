@@ -1,63 +1,63 @@
 import { liveCells, ghostCells } from '../constants/elements'
-import { getNeighbours, getAllNeighbours } from './neighbours'
+import { getNeighbourCells, getAllNeighbourCells } from './neighbourCells'
 
 const iteration = () => {
-  const liveCellNeighbours = getAllNeighbours(liveCells, 'live')
-  const ghostCellNeighbours = getAllNeighbours(ghostCells, 'live')
-  const liveCellCleanup = []
+  const liveNeighbourCells = getAllNeighbourCells(liveCells, 'live')
+  const ghostNeighbourCells = getAllNeighbourCells(ghostCells, 'live')
+  const cleanup = []
 
-  for (let i = 0; i < liveCellNeighbours.length; i++) {
-    const cellInfo = liveCellNeighbours[i].split(',')
+  for (let i = 0; i < liveNeighbourCells.length; i++) {
+    const cellInfo = liveNeighbourCells[i].split(',')
     const liveCellId = cellInfo[0]
-    const neighbourCountInt = Number(cellInfo[1])
+    const neighbourCellCount = Number(cellInfo[1])
 
-    liveCellCleanup.push(liveCellId)
+    cleanup.push(liveCellId)
 
-    if (neighbourCountInt < 2 || neighbourCountInt > 3) {
+    if (neighbourCellCount < 2 || neighbourCellCount > 3) {
       document.getElementById(liveCellId).classList.remove('live')
       document.getElementById(liveCellId).classList.add('ghost')
     }
   }
 
-  for (let i = 0; i < ghostCellNeighbours.length; i++) {
-    const cellInfo = ghostCellNeighbours[i].split(',')
+  for (let i = 0; i < ghostNeighbourCells.length; i++) {
+    const cellInfo = ghostNeighbourCells[i].split(',')
     const ghostCellId = cellInfo[0]
-    const neighbourCountInt = Number(cellInfo[1])
+    const neighbourCellCount = Number(cellInfo[1])
 
-    if (neighbourCountInt === 3) {
+    if (neighbourCellCount === 3) {
       document.getElementById(ghostCellId).classList.remove('ghost')
       document.getElementById(ghostCellId).classList.add('live')
 
-      liveCellCleanup.push(ghostCellId)
+      cleanup.push(ghostCellId)
 
-      const neighbours = getNeighbours(ghostCellId)
+      const neighbourCells = getNeighbourCells(ghostCellId)
 
-      for (let i = 0; i < neighbours.length; i++) {
-        if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
-          document.getElementById(neighbours[i]).classList.add('ghost')
+      for (let i = 0; i < neighbourCells.length; i++) {
+        if (document.getElementById(neighbourCells[i]) != null && !document.getElementById(neighbourCells[i]).classList.contains('live')) {
+          document.getElementById(neighbourCells[i]).classList.add('ghost')
         }
       }
-    } else if (neighbourCountInt === 0) {
+    } else if (neighbourCellCount === 0) {
       document.getElementById(ghostCellId).classList.remove('ghost')
     }
   }
 
-  const liveCellCleanupCollection = []
+  const cleanupCollection = []
 
-  for (let i = 0; i < liveCellCleanup.length; i++) {
-    liveCellCleanupCollection.push(document.getElementById(liveCellCleanup[i]))
+  for (let i = 0; i < cleanup.length; i++) {
+    cleanupCollection.push(document.getElementById(cleanup[i]))
   }
 
-  const liveCellCleanupNeighbours = getAllNeighbours(liveCellCleanupCollection, 'live')
+  const cleanupNeighbourCells = getAllNeighbourCells(cleanupCollection, 'live')
 
-  for (let i = 0; i < liveCellCleanupNeighbours.length; i++) {
-    const cellInfo = liveCellCleanupNeighbours[i].split(',')
-    const liveCellCleanupId = cellInfo[0]
-    const neighbours = getNeighbours(liveCellCleanupId)
+  for (let i = 0; i < cleanupNeighbourCells.length; i++) {
+    const cellInfo = cleanupNeighbourCells[i].split(',')
+    const cleanupId = cellInfo[0]
+    const neighbourCells = getNeighbourCells(cleanupId)
 
-    for (let i = 0; i < neighbours.length; i++) {
-      if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
-        document.getElementById(neighbours[i]).classList.add('ghost')
+    for (let i = 0; i < neighbourCells.length; i++) {
+      if (document.getElementById(neighbourCells[i]) != null && !document.getElementById(neighbourCells[i]).classList.contains('live')) {
+        document.getElementById(neighbourCells[i]).classList.add('ghost')
       }
     }
   }

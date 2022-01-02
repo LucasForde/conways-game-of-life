@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { getNeighbours } from './utils/neighbours'
+import { getNeighbourCells } from './utils/neighbourCells'
 import run from './utils/run'
 import Header from './components/Header'
 
@@ -14,11 +14,11 @@ const App: FunctionComponent = () => {
       document.getElementById(id).classList.add('live')
       document.getElementById(id).classList.remove('ghost')
 
-      const neighbours = getNeighbours(id)
+      const neighbourCells = getNeighbourCells(id)
 
-      for (let i = 0; i < neighbours.length; i++) {
-        if (document.getElementById(neighbours[i]) != null && !document.getElementById(neighbours[i]).classList.contains('live')) {
-          document.getElementById(neighbours[i]).classList.add('ghost')
+      for (let i = 0; i < neighbourCells.length; i++) {
+        if (document.getElementById(neighbourCells[i]) != null && !document.getElementById(neighbourCells[i]).classList.contains('live')) {
+          document.getElementById(neighbourCells[i]).classList.add('ghost')
         }
       }
     }
