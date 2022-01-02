@@ -1,7 +1,7 @@
 import { liveCells, ghostCells } from '../constants/elements'
 import { getNeighbourCells, getAllNeighbourCells } from './neighbourCells'
 
-const iteration = () => {
+const generation = () => {
   const liveNeighbourCells = getAllNeighbourCells(liveCells, 'live')
   const ghostNeighbourCells = getAllNeighbourCells(ghostCells, 'live')
   const cleanup = []
@@ -63,4 +63,4 @@ const iteration = () => {
   }
 }
 
-export default iteration
+export default generation

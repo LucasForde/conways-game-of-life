@@ -4,7 +4,6 @@ import * as presets from '../constants/presets'
 import run from '../utils/run'
 import randomState from '../utils/randomState'
 import presetInitialState from '../utils/presetInitialState'
-import nextGeneration from '../utils/nextGeneration'
 import clearGrid from '../utils/clearGrid'
 
 const Header: FunctionComponent = () => {
@@ -29,7 +28,7 @@ const Header: FunctionComponent = () => {
         <div onClick={() => presetInitialState(presets.gliderGuns)}>Glider Guns</div>
         <div onClick={() => presetInitialState(presets.oscillator)}>Oscillator</div>
         <div onClick={() => presetInitialState(presets.rPentomino)}>R-Pentomino</div>
-        <div onClick={() => nextGeneration()}>Next Generation</div>
+        <div onClick={() => run.step()}>Next Generation</div>
         <div onClick={() => clearGrid()}>Clear Grid</div>
       </nav>
 
