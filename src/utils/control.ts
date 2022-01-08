@@ -1,14 +1,16 @@
 import generation from './generation'
 
 const control = {
-  start: function () {
+  start: function (callBack: (arg: boolean) => void) {
+    callBack(true)
     this.interval = setInterval(generation, 25)
   },
-  stop: function () {
+  stop: function (callBack: (arg: boolean) => void) {
+    callBack(false)
     clearInterval(this.interval)
   },
-  step: function () {
-    this.stop()
+  step: function (callBack: (arg: boolean) => void) {
+    this.stop(callBack)
     generation()
   }
 }

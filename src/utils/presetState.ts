@@ -1,9 +1,9 @@
 import addClassName from './addClassName'
 import clearGrid from './clearGrid'
 
-const presetState = (preset) => {
+const presetState = (preset, callBack: () => void) => {
   const { liveCellIds, ghostCellIds } = preset
-  clearGrid()
+  clearGrid(callBack)
 
   addClassName(liveCellIds, 'live')
   addClassName(ghostCellIds, 'ghost')
