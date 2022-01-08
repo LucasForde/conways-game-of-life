@@ -2,7 +2,7 @@ import React, { FunctionComponent, useContext } from 'react'
 import { MdPlayArrow, MdStop, MdSkipNext, MdOutlineClear } from 'react-icons/md'
 import { AppContext } from '../AppContext'
 import clearGrid from '../utils/clearGrid'
-import run from '../utils/run'
+import control from '../utils/control'
 
 const Controls: FunctionComponent = () => {
   const { running, setRunning } = useContext(AppContext)
@@ -12,7 +12,7 @@ const Controls: FunctionComponent = () => {
       {!running ? (
         <MdPlayArrow
           onClick={() => {
-            run.start()
+            control.start()
             setRunning(true)
           }}
           className='icon'
@@ -21,7 +21,7 @@ const Controls: FunctionComponent = () => {
       ) : (
         <MdStop
           onClick={() => {
-            run.stop()
+            control.stop()
             setRunning(false)
           }}
           className='icon'
@@ -29,7 +29,7 @@ const Controls: FunctionComponent = () => {
         />
       )}
       <MdSkipNext
-        onClick={() => run.step()}
+        onClick={() => control.step()}
         className='icon'
         size={24}
       />

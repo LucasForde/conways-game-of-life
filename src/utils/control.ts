@@ -1,6 +1,6 @@
 import generation from './generation'
 
-const run = {
+const control = {
   start: function () {
     this.interval = setInterval(generation, 25)
   },
@@ -13,4 +13,4 @@ const run = {
   }
 }
 
-export default run
+export default control

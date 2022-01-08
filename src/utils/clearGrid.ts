@@ -1,8 +1,8 @@
 import { allCells } from '../constants/elements'
-import run from './run'
+import control from './control'
 
 const clearGrid = () => {
-  run.stop()
+  control.stop()
 
   Array.from(allCells).forEach(item => {
     item.classList.remove('live', 'ghost')

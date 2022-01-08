@@ -1,8 +1,8 @@
 import { getNeighbourCells } from './neighbourCells'
-import run from './run'
+import control from './control'
 
 const cellClick = (id) => {
-  run.stop()
+  control.stop()
 
   if (document.getElementById(id).classList.contains('live')) {
     document.getElementById(id).classList.add('ghost')
