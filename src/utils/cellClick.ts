@@ -1,6 +1,6 @@
 import { getNeighbourCells } from './neighbourCells'
 
-const cellClick = (id) => {
+const cellClick = (id: string) => {
   if (document.getElementById(id).classList.contains('live')) {
     document.getElementById(id).classList.add('ghost')
     document.getElementById(id).classList.remove('live')
@@ -8,13 +8,11 @@ const cellClick = (id) => {
     document.getElementById(id).classList.add('live')
     document.getElementById(id).classList.remove('ghost')
 
-    const neighbourCells = getNeighbourCells(id)
-
-    for (let i = 0; i < neighbourCells.length; i++) {
-      if (document.getElementById(neighbourCells[i]) != null && !document.getElementById(neighbourCells[i]).classList.contains('live')) {
-        document.getElementById(neighbourCells[i]).classList.add('ghost')
+    getNeighbourCells(id).forEach(item => {
+      if (!document.getElementById(item).classList.contains('live')) {
+        document.getElementById(item).classList.add('ghost')
       }
-    }
+    })
   }
 }
 

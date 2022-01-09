@@ -1,4 +1,4 @@
-const addClassName = (cellIds, className) => {
+const addClassName = (cellIds: string[], className: string) => {
   cellIds.forEach(item => {
     document.getElementById(item).classList.add(className)
   })

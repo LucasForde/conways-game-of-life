@@ -1,7 +1,7 @@
 import { allCells } from '../constants/elements'
 import control from './control'
 
-const clearGrid = (callBack: () => void) => {
+const clearGrid = (callBack: (arg: boolean) => void) => {
   control.stop(callBack)
 
   Array.from(allCells).forEach(item => {
