@@ -1,7 +1,7 @@
 import addClassName from './addClassName'
 import clearGrid from './clearGrid'
 
-const presetState = (preset, callBack: () => void) => {
+const presetPattern = (preset, callBack: () => void) => {
   const { liveCellIds, ghostCellIds } = preset
   clearGrid(callBack)
 
@@ -9,4 +9,4 @@ const presetState = (preset, callBack: () => void) => {
   addClassName(ghostCellIds, 'ghost')
 }
 
-export default presetState
+export default presetPattern

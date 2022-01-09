@@ -2,7 +2,7 @@ import { allCells } from '../constants/elements'
 import clearGrid from './clearGrid'
 import generation from './generation'
 
-const randomState = (callBack: () => void) => {
+const randomPattern = (callBack: () => void) => {
   clearGrid(callBack)
 
   Array.from(allCells).forEach(item => {
@@ -14,4 +14,4 @@ const randomState = (callBack: () => void) => {
   generation()
 }
 
-export default randomState
+export default randomPattern

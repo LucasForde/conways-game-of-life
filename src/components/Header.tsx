@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useContext } from 'react'
 import { MdInfoOutline } from 'react-icons/md'
 import { AppContext } from '../AppContext'
-import * as presets from '../constants/presets'
-import randomState from '../utils/randomState'
-import presetState from '../utils/presetState'
+import * as patterns from '../constants/patterns'
+import randomPattern from '../utils/randomPattern'
+import presetPattern from '../utils/presetPattern'
 import Controls from './Controls'
 
 const Header: FunctionComponent = () => {
@@ -17,12 +17,12 @@ const Header: FunctionComponent = () => {
           setRunning={setRunning}
         />
 
-        <div className='presets'>
-          <div onClick={() => randomState(setRunning)}>Random State</div>
-          <div onClick={() => presetState(presets.glidersSpaceships, setRunning)}>Gliders &amp; Spaceships</div>
-          <div onClick={() => presetState(presets.gliderGuns, setRunning)}>Glider Guns</div>
-          <div onClick={() => presetState(presets.oscillator, setRunning)}>Oscillator</div>
-          <div onClick={() => presetState(presets.rPentomino, setRunning)}>R-Pentomino</div>
+        <div className='patterns'>
+          <div onClick={() => randomPattern(setRunning)}>Random State</div>
+          <div onClick={() => presetPattern(patterns.glidersSpaceships, setRunning)}>Gliders &amp; Spaceships</div>
+          <div onClick={() => presetPattern(patterns.gliderGuns, setRunning)}>Glider Guns</div>
+          <div onClick={() => presetPattern(patterns.oscillator, setRunning)}>Oscillator</div>
+          <div onClick={() => presetPattern(patterns.rPentomino, setRunning)}>R-Pentomino</div>
         </div>
       </div>
 
