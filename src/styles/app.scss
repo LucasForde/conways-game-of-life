@@ -28,6 +28,7 @@ body {
 
 header {
   display: flex;
+  justify-content: space-between;
   padding: 5px;
   background-color: $grid;
 
@@ -37,16 +38,20 @@ header {
     cursor: pointer;
   }
 
-  nav {
+  .header-left {
     display: flex;
-    align-items: center;
-    padding: 0 20px;
 
-    div {
-      @include font();
-      color: $menu;
-      padding: 0 5px;
-      cursor: pointer;
+    .presets {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+
+      div {
+        @include font();
+        color: $menu;
+        padding: 0 5px;
+        cursor: pointer;
+      }
     }
   }
 }
