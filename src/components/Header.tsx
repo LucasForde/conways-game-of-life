@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useContext } from 'react'
 import { MdInfoOutline } from 'react-icons/md'
 import { AppContext } from '../AppContext'
-import * as presets from '../constants/presets'
+import * as initialStates from '../constants/initialStates'
 import randomState from '../utils/randomState'
-import presetState from '../utils/presetState'
+import initialState from '../utils/initialState'
 import Controls from './Controls'
 
 const Header: FunctionComponent = () => {
@@ -17,12 +17,12 @@ const Header: FunctionComponent = () => {
           setRunning={setRunning}
         />
 
-        <div className='presets'>
+        <div className='initialStates'>
           <div onClick={() => randomState(setRunning)}>Random State</div>
-          <div onClick={() => presetState(presets.glidersSpaceships, setRunning)}>Gliders &amp; Spaceships</div>
-          <div onClick={() => presetState(presets.gliderGuns, setRunning)}>Glider Guns</div>
-          <div onClick={() => presetState(presets.oscillator, setRunning)}>Oscillator</div>
-          <div onClick={() => presetState(presets.rPentomino, setRunning)}>R-Pentomino</div>
+          <div onClick={() => initialState(initialStates.glidersSpaceships, setRunning)}>Gliders &amp; Spaceships</div>
+          <div onClick={() => initialState(initialStates.gliderGuns, setRunning)}>Glider Guns</div>
+          <div onClick={() => initialState(initialStates.oscillator, setRunning)}>Oscillator</div>
+          <div onClick={() => initialState(initialStates.rPentomino, setRunning)}>R-Pentomino</div>
         </div>
       </div>
 
