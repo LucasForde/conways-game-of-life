@@ -1,4 +1,4 @@
 export interface ControlProps {
-  running: boolean
-  setRunning: () => void
+  running?: boolean
+  setRunning?: () => void
 }
