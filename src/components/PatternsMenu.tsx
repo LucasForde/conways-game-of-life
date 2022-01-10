@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import { ControlProps } from '../constants/types'
+import { IControlProps } from '../constants/types'
 import * as patterns from '../constants/patterns'
 import randomPattern from '../utils/randomPattern'
 import presetPattern from '../utils/presetPattern'
 
-const PatternsMenu: FunctionComponent<ControlProps> = ({ setRunning }: ControlProps) => {
+const PatternsMenu: FunctionComponent<IControlProps> = ({ setRunning }: IControlProps) => {
   return (
     <div className='patterns'>
       <div onClick={() => randomPattern(setRunning)}>Random State</div>

@@ -1,8 +1,9 @@
+import { IPattern } from '../constants/types'
 import addClassName from './addClassName'
 import clearGrid from './clearGrid'
 
-const presetPattern = (preset, callBack: (arg: boolean) => void) => {
-  const { liveCellIds, ghostCellIds } = preset
+const presetPattern = (pattern: IPattern, callBack: (arg: boolean) => void) => {
+  const { liveCellIds, ghostCellIds } = pattern
   clearGrid(callBack)
 
   addClassName(liveCellIds, 'live')

@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
 import { MdPlayArrow, MdStop, MdSkipNext, MdOutlineClear } from 'react-icons/md'
-import { ControlProps } from '../constants/types'
+import { IControlProps } from '../constants/types'
 import clearGrid from '../utils/clearGrid'
 import control from '../utils/control'
 
-const Controls: FunctionComponent<ControlProps> = ({ running, setRunning }: ControlProps) => {
+const Controls: FunctionComponent<IControlProps> = ({ running, setRunning }: IControlProps) => {
   return (
     <>
       {!running ? (
