@@ -1,22 +1,22 @@
-export const getNeighbourCells = (id) => {
+export const getNeighbourCells = (id: string) => {
   const idSplit = id.split('-')
-  const idSplitIntFirst = Number(idSplit[0])
-  const idSplitIntSecond = Number(idSplit[1])
+  const row = Number(idSplit[0])
+  const col = Number(idSplit[1])
   const neighbourCells = []
 
-  neighbourCells.push((idSplitIntFirst - 1) + '-' + idSplit[1])
-  neighbourCells.push((idSplitIntFirst - 1) + '-' + (idSplitIntSecond + 1))
-  neighbourCells.push(idSplit[0] + '-' + (idSplitIntSecond + 1))
-  neighbourCells.push((idSplitIntFirst + 1) + '-' + (idSplitIntSecond + 1))
-  neighbourCells.push((idSplitIntFirst + 1) + '-' + idSplit[1])
-  neighbourCells.push((idSplitIntFirst + 1) + '-' + (idSplitIntSecond - 1))
-  neighbourCells.push(idSplit[0] + '-' + (idSplitIntSecond - 1))
-  neighbourCells.push((idSplitIntFirst - 1) + '-' + (idSplitIntSecond - 1))
+  neighbourCells.push((row - 1) + '-' + col)
+  neighbourCells.push((row - 1) + '-' + (col + 1))
+  neighbourCells.push(row + '-' + (col + 1))
+  neighbourCells.push((row + 1) + '-' + (col + 1))
+  neighbourCells.push((row + 1) + '-' + col)
+  neighbourCells.push((row + 1) + '-' + (col - 1))
+  neighbourCells.push(row + '-' + (col - 1))
+  neighbourCells.push((row - 1) + '-' + (col - 1))
 
   return neighbourCells
 }
 
-export const getAllNeighbourCells = (cells, className) => {
+export const getAllNeighbourCells = (cells: HTMLElement[], className: string) => {
   const allNeighbourCells = []
 
   for (let i = 0; i < cells.length; i++) {
