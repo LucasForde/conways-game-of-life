@@ -1,19 +1,22 @@
 export const getNeighbourCells = (id: string) => {
   const idSplit = id.split('-')
-  const row = Number(idSplit[0])
-  const col = Number(idSplit[1])
-  const neighbourCells = []
+  const thisRow = Number(idSplit[0])
+  const thisCol = Number(idSplit[1])
+  const prevRow = thisRow - 1
+  const nextRow = thisRow + 1
+  const prevCol = thisCol - 1
+  const nextCol = thisCol + 1
 
-  neighbourCells.push((row - 1) + '-' + col)
-  neighbourCells.push((row - 1) + '-' + (col + 1))
-  neighbourCells.push(row + '-' + (col + 1))
-  neighbourCells.push((row + 1) + '-' + (col + 1))
-  neighbourCells.push((row + 1) + '-' + col)
-  neighbourCells.push((row + 1) + '-' + (col - 1))
-  neighbourCells.push(row + '-' + (col - 1))
-  neighbourCells.push((row - 1) + '-' + (col - 1))
-
-  return neighbourCells
+  return [
+    `${prevRow}-${prevCol}`,
+    `${prevRow}-${thisCol}`,
+    `${prevRow}-${nextCol}`,
+    `${thisRow}-${prevCol}`,
+    `${thisRow}-${nextCol}`,
+    `${nextRow}-${prevCol}`,
+    `${nextRow}-${thisCol}`,
+    `${nextRow}-${nextCol}`
+  ]
 }
 
 export const getAllNeighbourCells = (cells: HTMLElement[], className: string) => {
