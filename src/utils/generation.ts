@@ -2,14 +2,13 @@ import { liveCells, ghostCells } from '../constants/elements'
 import { getNeighbourCells, getAllNeighbourCells } from './neighbourCells'
 
 const generation = () => {
-  const liveNeighbourCells = getAllNeighbourCells(liveCells, 'live')
-  const ghostNeighbourCells = getAllNeighbourCells(ghostCells, 'live')
+  const liveNeighbourCells = getAllNeighbourCells(Array.from(liveCells), 'live')
+  const ghostNeighbourCells = getAllNeighbourCells(Array.from(ghostCells), 'live')
   const cleanup = []
 
   for (let i = 0; i < liveNeighbourCells.length; i++) {
-    const cellInfo = liveNeighbourCells[i].split(',')
-    const liveCellId = cellInfo[0]
-    const neighbourCellCount = Number(cellInfo[1])
+    const liveCellId = liveNeighbourCells[i].cellId
+    const neighbourCellCount = liveNeighbourCells[i].neighbourCount
 
     cleanup.push(liveCellId)
 
@@ -20,9 +19,8 @@ const generation = () => {
   }
 
   for (let i = 0; i < ghostNeighbourCells.length; i++) {
-    const cellInfo = ghostNeighbourCells[i].split(',')
-    const ghostCellId = cellInfo[0]
-    const neighbourCellCount = Number(cellInfo[1])
+    const ghostCellId = ghostNeighbourCells[i].cellId
+    const neighbourCellCount = ghostNeighbourCells[i].neighbourCount
 
     if (neighbourCellCount === 3) {
       document.getElementById(ghostCellId).classList.remove('ghost')
@@ -51,8 +49,7 @@ const generation = () => {
   const cleanupNeighbourCells = getAllNeighbourCells(cleanupCollection, 'live')
 
   for (let i = 0; i < cleanupNeighbourCells.length; i++) {
-    const cellInfo = cleanupNeighbourCells[i].split(',')
-    const cleanupId = cellInfo[0]
+    const cleanupId = cleanupNeighbourCells[i].cellId
     const neighbourCells = getNeighbourCells(cleanupId)
 
     for (let i = 0; i < neighbourCells.length; i++) {

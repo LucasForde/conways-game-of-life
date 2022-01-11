@@ -19,22 +19,19 @@ export const getNeighbourCells = (id: string) => {
   ]
 }
 
-export const getAllNeighbourCells = (cells: HTMLElement[], className: string) => {
-  const allNeighbourCells = []
+export const getAllNeighbourCells = (cells: any[], className: string) => {
+  return Array.from(cells).map(item => {
+    let neighbourCount = 0
 
-  for (let i = 0; i < cells.length; i++) {
-    const neighbourCells = getNeighbourCells(cells[i].id)
-
-    const neighbourCellsCount = []
-
-    for (let i = 0; i < neighbourCells.length; i++) {
-      if (document.getElementById(neighbourCells[i]) != null && document.getElementById(neighbourCells[i]).classList.contains(className)) {
-        neighbourCellsCount.push(i + 1)
+    getNeighbourCells(item.id).forEach(id => {
+      if (document.getElementById(id) && document.getElementById(id).classList.contains(className)) {
+        neighbourCount++
       }
+    })
+
+    return {
+      cellId: item.id,
+      neighbourCount
     }
-
-    allNeighbourCells.push(cells[i].id + ',' + neighbourCellsCount.length)
-  }
-
-  return allNeighbourCells
+  })
 }
