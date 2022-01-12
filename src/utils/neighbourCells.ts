@@ -19,19 +19,19 @@ export const getNeighbourCells = (id: string) => {
   ]
 }
 
-export const getAllNeighbourCells = (cells: any[], className: string) => {
+export const getAllNeighbourCells = (cells: any[]) => {
   return Array.from(cells).map(item => {
-    let neighbourCount = 0
+    let liveNeighbourCount = 0
 
     getNeighbourCells(item.id).forEach(id => {
-      if (document.getElementById(id) && document.getElementById(id).classList.contains(className)) {
-        neighbourCount++
+      if (document.getElementById(id) && document.getElementById(id).classList.contains('live')) {
+        liveNeighbourCount++
       }
     })
 
     return {
       cellId: item.id,
-      neighbourCount
+      liveNeighbourCount
     }
   })
 }
