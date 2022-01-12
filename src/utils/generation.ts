@@ -8,11 +8,11 @@ const generation = () => {
 
   for (let i = 0; i < liveNeighbourCells.length; i++) {
     const liveCellId = liveNeighbourCells[i].cellId
-    const neighbourCellCount = liveNeighbourCells[i].neighbourCount
+    const neighbourCount = liveNeighbourCells[i].neighbourCount
 
     cleanup.push(liveCellId)
 
-    if (neighbourCellCount < 2 || neighbourCellCount > 3) {
+    if (neighbourCount < 2 || neighbourCount > 3) {
       document.getElementById(liveCellId).classList.remove('live')
       document.getElementById(liveCellId).classList.add('ghost')
     }
@@ -20,9 +20,9 @@ const generation = () => {
 
   for (let i = 0; i < ghostNeighbourCells.length; i++) {
     const ghostCellId = ghostNeighbourCells[i].cellId
-    const neighbourCellCount = ghostNeighbourCells[i].neighbourCount
+    const neighbourCount = ghostNeighbourCells[i].neighbourCount
 
-    if (neighbourCellCount === 3) {
+    if (neighbourCount === 3) {
       document.getElementById(ghostCellId).classList.remove('ghost')
       document.getElementById(ghostCellId).classList.add('live')
 
@@ -35,7 +35,7 @@ const generation = () => {
           document.getElementById(neighbourCells[i]).classList.add('ghost')
         }
       }
-    } else if (neighbourCellCount === 0) {
+    } else if (neighbourCount === 0) {
       document.getElementById(ghostCellId).classList.remove('ghost')
     }
   }
