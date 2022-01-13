@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react'
 import cellClick from '../utils/cellClick'
 
 interface CellProps {
-  cellId: string
+  id: string
 }
 
-const Cell: FunctionComponent<CellProps> = ({ cellId }: CellProps) => {
-  return <div className='cell' id={cellId} key={cellId} onClick={() => cellClick(cellId)} />
+const Cell: FunctionComponent<CellProps> = ({ id }: CellProps) => {
+  return <div className='cell' id={id} key={id} onClick={() => cellClick(id)} />
 }
 
 export default Cell

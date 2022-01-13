@@ -30,7 +30,7 @@ export const getAllNeighbourCells = (cells: any[]) => {
     })
 
     return {
-      cellId: item.id,
+      id: item.id,
       liveNeighbourCount
     }
   })

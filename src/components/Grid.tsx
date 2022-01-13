@@ -8,9 +8,9 @@ const Grid: FunctionComponent = () => {
 
     for (let i = 0; i < gridSize; i++) {
       for (let j = 0; j < gridSize; j++) {
-        const cellId = `${i}-${j}`
+        const id = `${i}-${j}`
 
-        cells.push(<Cell key={cellId} cellId={cellId} />)
+        cells.push(<Cell key={id} id={id} />)
       }
     }
 
