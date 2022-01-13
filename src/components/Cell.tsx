@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
 import cellClick from '../utils/cellClick'
 
-interface CellProps {
+interface IProps {
   id: string
 }
 
-const Cell: FunctionComponent<CellProps> = ({ id }: CellProps) => {
+const Cell: FunctionComponent<IProps> = ({ id }: IProps) => {
   return <div className='cell' id={id} key={id} onClick={() => cellClick(id)} />
 }
 
