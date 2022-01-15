@@ -4,7 +4,7 @@ import { getNeighbourCells, getAllNeighbourCells } from './neighbourCells'
 const generation = () => {
   const liveNeighbourCells = getAllNeighbourCells(Array.from(liveCells))
   const ghostNeighbourCells = getAllNeighbourCells(Array.from(ghostCells))
-  const cleanup = []
+  const missingGhostCells = []
 
   liveNeighbourCells.forEach(item => {
     if (item.liveNeighbourCount < 2 || item.liveNeighbourCount > 3) {
@@ -17,20 +17,13 @@ const generation = () => {
     if (item.liveNeighbourCount === 3) {
       document.getElementById(item.id).classList.remove('ghost')
       document.getElementById(item.id).classList.add('live')
-
-      getNeighbourCells(item.id).forEach(id => {
-        if (document.getElementById(id) && !document.getElementById(id).classList.contains('live')) {
-          document.getElementById(id).classList.add('ghost')
-        }
-      })
-
-      cleanup.push(document.getElementById(item.id))
+      missingGhostCells.push(document.getElementById(item.id))
     } else if (item.liveNeighbourCount === 0) {
       document.getElementById(item.id).classList.remove('ghost')
     }
   })
 
-  getAllNeighbourCells(cleanup).forEach(item => {
+  getAllNeighbourCells(missingGhostCells).forEach(item => {
     getNeighbourCells(item.id).forEach(id => {
       if (document.getElementById(id) && !document.getElementById(id).classList.contains('live')) {
         document.getElementById(id).classList.add('ghost')
