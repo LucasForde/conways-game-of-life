@@ -7,8 +7,6 @@ const generation = () => {
   const cleanup = []
 
   liveNeighbourCells.forEach(item => {
-    cleanup.push(item.id)
-
     if (item.liveNeighbourCount < 2 || item.liveNeighbourCount > 3) {
       document.getElementById(item.id).classList.remove('live')
       document.getElementById(item.id).classList.add('ghost')
@@ -20,25 +18,19 @@ const generation = () => {
       document.getElementById(item.id).classList.remove('ghost')
       document.getElementById(item.id).classList.add('live')
 
-      cleanup.push(item.id)
-
       getNeighbourCells(item.id).forEach(id => {
         if (document.getElementById(id) && !document.getElementById(id).classList.contains('live')) {
           document.getElementById(id).classList.add('ghost')
         }
       })
+
+      cleanup.push(document.getElementById(item.id))
     } else if (item.liveNeighbourCount === 0) {
       document.getElementById(item.id).classList.remove('ghost')
     }
   })
 
-  const cleanupCollection = []
-
-  cleanup.forEach(id => {
-    cleanupCollection.push(document.getElementById(id))
-  })
-
-  getAllNeighbourCells(cleanupCollection).forEach(item => {
+  getAllNeighbourCells(cleanup).forEach(item => {
     getNeighbourCells(item.id).forEach(id => {
       if (document.getElementById(id) && !document.getElementById(id).classList.contains('live')) {
         document.getElementById(id).classList.add('ghost')
