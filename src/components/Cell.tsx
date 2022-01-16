@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react'
-import cellClick from '../utils/cellClick'
+import cellToggle from '../utils/cellToggle'
 
 interface IProps {
   id: string
 }
 
 const Cell: FunctionComponent<IProps> = ({ id }: IProps) => {
-  return <div className='cell' id={id} key={id} onClick={() => cellClick(id)} />
+  return <div className='cell' id={id} key={id} onClick={() => cellToggle(id)} />
 }
 
 export default Cell

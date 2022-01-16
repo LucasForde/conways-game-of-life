@@ -1,7 +1,7 @@
 import { setClassNames, cellIsLive } from './handleClassNames'
 import { getNeighbourCells } from './neighbourCells'
 
-const cellClick = (id: string) => {
+const cellToggle = (id: string) => {
   if (cellIsLive(id)) {
     setClassNames(id, 'ghost', 'toggle')
   } else {
@@ -15,4 +15,4 @@ const cellClick = (id: string) => {
   }
 }
 
-export default cellClick
+export default cellToggle
