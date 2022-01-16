@@ -8,10 +8,10 @@ const presetPattern = (pattern: IPattern, callBack: (arg: boolean) => void) => {
   clearGrid(callBack)
 
   liveCellIds.forEach(id => {
-    handleClassNames(id, 'live', 'add')
+    setClassNames(id, 'live', 'add')
   })
   ghostCellIds.forEach(id => {
-    handleClassNames(id, 'ghost', 'add')
+    setClassNames(id, 'ghost', 'add')
   })
 }
 
