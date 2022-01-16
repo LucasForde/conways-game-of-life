@@ -1,4 +1,4 @@
-const handleClassNames = (id: string, className: 'live' | 'ghost', action: 'add' | 'remove' | 'toggle') => {
+export const handleClassNames = (id: string, className: 'live' | 'ghost', action: 'add' | 'remove' | 'toggle') => {
   if (action === 'add') {
     document.getElementById(id).classList.add(className)
   } else if (action === 'remove') {
@@ -8,5 +8,3 @@ const handleClassNames = (id: string, className: 'live' | 'ghost', action: 'add'
     document.getElementById(id).classList.add(className === 'live' ? 'live' : 'ghost')
   }
 }
-
-export default handleClassNames

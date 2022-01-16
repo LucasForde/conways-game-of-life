@@ -1,6 +1,6 @@
 import { liveCells, ghostCells } from '../constants/elements'
 import { getNeighbourCells, getAllNeighbourCells } from './neighbourCells'
-import handleClassNames from './handleClassNames'
+import { handleClassNames } from './handleClassNames'
 
 const generation = () => {
   const liveNeighbourCells = getAllNeighbourCells(Array.from(liveCells))
