@@ -1,7 +1,7 @@
 import { allCells } from '../constants/elements'
 import clearGrid from './clearGrid'
 import generation from './generation'
-import { handleClassNames } from './handleClassNames'
+import { setClassNames } from './handleClassNames'
 
 const randomPattern = (callBack: (arg: boolean) => void) => {
   clearGrid(callBack)

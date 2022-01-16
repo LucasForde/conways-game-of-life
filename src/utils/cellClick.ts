@@ -1,4 +1,4 @@
-import { handleClassNames } from './handleClassNames'
+import { setClassNames } from './handleClassNames'
 import { getNeighbourCells } from './neighbourCells'
 
 const cellClick = (id: string) => {

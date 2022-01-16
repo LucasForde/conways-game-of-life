@@ -1,5 +1,5 @@
 import { IPattern } from '../constants/types'
-import { handleClassNames } from './handleClassNames'
+import { setClassNames } from './handleClassNames'
 import clearGrid from './clearGrid'
 
 const presetPattern = (pattern: IPattern, callBack: (arg: boolean) => void) => {
