@@ -1,14 +1,14 @@
-import { setClassNames } from './handleClassNames'
+import { setClassNames, cellIsLive } from './handleClassNames'
 import { getNeighbourCells } from './neighbourCells'
 
 const cellClick = (id: string) => {
-  if (document.getElementById(id).classList.contains('live')) {
+  if (cellIsLive(id)) {
     setClassNames(id, 'ghost', 'toggle')
   } else {
     setClassNames(id, 'live', 'toggle')
 
     getNeighbourCells(id).forEach(item => {
-      if (document.getElementById(item) && !document.getElementById(item).classList.contains('live')) {
+      if (!cellIsLive(item)) {
         setClassNames(item, 'ghost', 'add')
       }
     })

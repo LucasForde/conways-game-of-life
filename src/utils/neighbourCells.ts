@@ -1,3 +1,5 @@
+import { cellIsLive } from './handleClassNames'
+
 export const getNeighbourCells = (id: string) => {
   const idSplit = id.split('-')
   const thisRow = Number(idSplit[0])
@@ -20,11 +22,11 @@ export const getNeighbourCells = (id: string) => {
 }
 
 export const getAllNeighbourCells = (cells: any[]) => {
-  return Array.from(cells).map(item => {
+  return cells.map(item => {
     let liveNeighbourCount = 0
 
     getNeighbourCells(item.id).forEach(id => {
-      if (document.getElementById(id) && document.getElementById(id).classList.contains('live')) {
+      if (cellIsLive(id)) {
         liveNeighbourCount++
       }
     })

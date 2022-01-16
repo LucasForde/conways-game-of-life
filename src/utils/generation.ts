@@ -1,6 +1,6 @@
 import { liveCells, ghostCells } from '../constants/elements'
 import { getNeighbourCells, getAllNeighbourCells } from './neighbourCells'
-import { setClassNames } from './handleClassNames'
+import { setClassNames, cellIsLive } from './handleClassNames'
 
 const generation = () => {
   const liveNeighbourCells = getAllNeighbourCells(Array.from(liveCells))
@@ -24,7 +24,7 @@ const generation = () => {
 
   getAllNeighbourCells(missingGhostCells).forEach(item => {
     getNeighbourCells(item.id).forEach(id => {
-      if (document.getElementById(id) && !document.getElementById(id).classList.contains('live')) {
+      if (!cellIsLive(id)) {
         setClassNames(id, 'ghost', 'add')
       }
     })
