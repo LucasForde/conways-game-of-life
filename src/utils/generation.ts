@@ -1,5 +1,6 @@
 import { liveCells, ghostCells } from '../constants/elements'
 import { getNeighbourCells, getAllNeighbourCells } from './neighbourCells'
+import handleClassNames from './handleClassNames'
 
 const generation = () => {
   const liveNeighbourCells = getAllNeighbourCells(Array.from(liveCells))
@@ -8,25 +9,23 @@ const generation = () => {
 
   liveNeighbourCells.forEach(item => {
     if (item.liveNeighbourCount < 2 || item.liveNeighbourCount > 3) {
-      document.getElementById(item.id).classList.remove('live')
-      document.getElementById(item.id).classList.add('ghost')
+      handleClassNames(item.id, 'ghost', 'toggle')
     }
   })
 
   ghostNeighbourCells.forEach(item => {
     if (item.liveNeighbourCount === 3) {
-      document.getElementById(item.id).classList.remove('ghost')
-      document.getElementById(item.id).classList.add('live')
+      handleClassNames(item.id, 'live', 'toggle')
       missingGhostCells.push(document.getElementById(item.id))
     } else if (item.liveNeighbourCount === 0) {
-      document.getElementById(item.id).classList.remove('ghost')
+      handleClassNames(item.id, 'ghost', 'remove')
     }
   })
 
   getAllNeighbourCells(missingGhostCells).forEach(item => {
     getNeighbourCells(item.id).forEach(id => {
       if (document.getElementById(id) && !document.getElementById(id).classList.contains('live')) {
-        document.getElementById(id).classList.add('ghost')
+        handleClassNames(id, 'ghost', 'add')
       }
     })
   })

@@ -71,8 +71,8 @@ body {
       background-color: $highlight;
     }
 
-    // &.ghost {
-    //   background-color: rgba($highlight, 0.2);
-    // }
+    &.ghost {
+      background-color: rgba($highlight, 0.3);
+    }
   }
 }

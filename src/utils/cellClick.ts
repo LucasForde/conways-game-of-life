@@ -9,7 +9,7 @@ const cellClick = (id: string) => {
     document.getElementById(id).classList.remove('ghost')
 
     getNeighbourCells(id).forEach(item => {
-      if (!document.getElementById(item).classList.contains('live')) {
+      if (document.getElementById(item) && !document.getElementById(item).classList.contains('live')) {
         document.getElementById(item).classList.add('ghost')
       }
     })
