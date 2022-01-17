@@ -1,12 +1,19 @@
 import React, { FunctionComponent } from 'react'
-import cellToggle from '../utils/cellToggle'
 
 interface IProps {
   id: string
+  onCellToggle: (id: string, event: 'down' | 'over') => void
 }
 
-const Cell: FunctionComponent<IProps> = ({ id }: IProps) => {
-  return <div className='cell' id={id} key={id} onClick={() => cellToggle(id)} />
+const Cell: FunctionComponent<IProps> = ({ id, onCellToggle }: IProps) => {
+  return (
+    <div
+      className='cell'
+      id={id}
+      onMouseDown={() => onCellToggle(id, 'down')}
+      onMouseOver={() => onCellToggle(id, 'over')}
+    />
+  )
 }
 
 export default Cell
