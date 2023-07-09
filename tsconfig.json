@@ -3,7 +3,6 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "./built",
     "noResolve": false,
     "noImplicitAny": false,
     "sourceMap": true,
